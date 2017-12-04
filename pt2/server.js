@@ -13,10 +13,11 @@ const server=http.createServer(app);
 app.use('/static',express.static(path.join(__dirname,'/static')));
 
 Db.connect((err, db)=>{
-  dbQueries=rooms(db).catch((err)=>{
+  try { dbQueries=rooms(db) }
+  catch(err) {
     console.error('Failed to connect to database!', err);
     process.exit(1);
-  });
+  }
 });
 
 app.post('/:p', (req, res) => {

@@ -7,7 +7,7 @@ module.exports = function(dbCon) {
           {$inc: {visits: 1},
            $set: {room:D.room, data:D.data, lastUpdate: new Date()}
           },
-        {upsert:true}, function(err, data) { console.log(data.result); return cb(err, data); });
+        {upsert:true}, function(err, data) { return cb(err, data); });
       },
     loadRoom: function (name, cb) {
       dbCon.collection("rooms").find({room:name}).toArray(function(err,data){
