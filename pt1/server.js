@@ -7,7 +7,7 @@ const server=http.createServer(app);
 
 app.use('/static',express.static(path.join(__dirname,'/static')));
 
-app.get('/:p', (req,res) => {
+app.get('/:p', (req, res) => {
   if (req.params.p.match(/[^a-z0-9-]/gi)) { return false; }
   else { res.sendFile(path.join(__dirname+'/index.html')); }
 });
